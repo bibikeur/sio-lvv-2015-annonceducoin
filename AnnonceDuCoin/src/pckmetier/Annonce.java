@@ -71,5 +71,6 @@ public class Annonce
 		this.lesPhotos = lesPhotos;
 	}
 	
+	//eety
 	
 }
