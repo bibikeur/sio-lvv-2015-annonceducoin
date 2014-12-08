@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public class Annonce
 {
+	
+
 	private String infoAnnonce;
 	private String contactAnnonce;
 	private String titreAnnonce;
@@ -72,5 +74,12 @@ public class Annonce
 	}
 	
 	
+	public String toString()
+	{
+		return "Annonce [infoAnnonce=" + infoAnnonce + ", contactAnnonce="
+				+ contactAnnonce + ", titreAnnonce=" + titreAnnonce
+				+ ", prixAnnonce=" + prixAnnonce + ", dateAnnonce="
+				+ dateAnnonce + ", lesPhotos=" + lesPhotos + "]";
+	}
 	
 }
