@@ -1,8 +1,11 @@
 package pckmetier;
 
+import java.util.ArrayList;
+
 public class Region
 {
 	private String nomRegion;
+	private ArrayList<Departement> lesDepartements;
 	
 	
 	public Region(String nomRegion)
