@@ -12,7 +12,25 @@ public class Annonce
 	private int prixAnnonce;
 	private String dateAnnonce;
 	private ArrayList<Photo>lesPhotos;
+	private SousCategorie laSousCateg;
+	private Departement leDepartement;
 	
+	
+	
+	public Annonce(String infoAnnonce, String contactAnnonce,
+			String titreAnnonce, int prixAnnonce, String dateAnnonce, SousCategorie laSousCateg)
+	{
+		super();
+		this.infoAnnonce = infoAnnonce;
+		this.contactAnnonce = contactAnnonce;
+		this.titreAnnonce = titreAnnonce;
+		this.prixAnnonce = prixAnnonce;
+		this.dateAnnonce = dateAnnonce;
+		this.laSousCateg = laSousCateg;
+		this.lesPhotos = new ArrayList<Photo>();
+		
+	}
+
 	public String getInfoAnnonce()
 	{
 		return infoAnnonce;
@@ -49,13 +67,5 @@ public class Annonce
 		return lesPhotos;
 	}
 	
-	
-	public String toString()
-	{
-		return "Annonce [infoAnnonce=" + infoAnnonce + ", contactAnnonce="
-				+ contactAnnonce + ", titreAnnonce=" + titreAnnonce
-				+ ", prixAnnonce=" + prixAnnonce + ", dateAnnonce="
-				+ dateAnnonce + ", lesPhotos=" + lesPhotos + "]";
-	}
 	
 }
