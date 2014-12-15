@@ -18,59 +18,35 @@ public class Annonce
 		return infoAnnonce;
 	}
 	
-	public void setInfoAnnonce(String infoAnnonce)
-	{
-		this.infoAnnonce = infoAnnonce;
-	}
+	
 	
 	public String getContactAnnonce()
 	{
 		return contactAnnonce;
 	}
 	
-	public void setContactAnnonce(String contactAnnonce)
-	{
-		this.contactAnnonce = contactAnnonce;
-	}
-	
+
 	public String getTitreAnnonce()
 	{
 		return titreAnnonce;
 	}
 	
-	public void setTitreAnnonce(String titreAnnonce)
-	{
-		this.titreAnnonce = titreAnnonce;
-	}
 	
 	public int getPrixAnnonce()
 	{
 		return prixAnnonce;
 	}
 	
-	public void setPrixAnnonce(int prixAnnonce)
-	{
-		this.prixAnnonce = prixAnnonce;
-	}
 	
 	public String getDateAnnonce()
 	{
 		return dateAnnonce;
 	}
 	
-	public void setDateAnnonce(String dateAnnonce)
-	{
-		this.dateAnnonce = dateAnnonce;
-	}
 	
 	public ArrayList<Photo> getLesPhotos()
 	{
 		return lesPhotos;
-	}
-	
-	public void setLesPhotos(ArrayList<Photo> lesPhotos)
-	{
-		this.lesPhotos = lesPhotos;
 	}
 	
 	
