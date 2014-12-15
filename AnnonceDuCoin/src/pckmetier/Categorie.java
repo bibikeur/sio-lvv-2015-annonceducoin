@@ -1,17 +1,20 @@
 package pckmetier;
 
+import java.util.ArrayList;
+
 public class Categorie
 {
-	private String nomSousCateg;
+	private String nomCateg;
+	private ArrayList<SousCategorie> lesSousCateg;
 
-	public String getNomSousCateg()
+	public String getNomCateg()
 	{
-		return nomSousCateg;
+		return nomCateg;
 	}
 
-	public void setNomSousCateg(String nomSousCateg)
+	public void setNomCateg(String nomSousCateg)
 	{
-		this.nomSousCateg = nomSousCateg;
+		this.nomCateg = nomSousCateg;
 	}
 	
 	

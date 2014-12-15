@@ -16,7 +16,6 @@ public class Utilisateur
 	private String role;
 	private ArrayList<Annonce>lesAnnonces;
 	
-	
 	public Utilisateur(String nom, String prenom, String login, String mdp,
 			String rue, String cp, String ville, String tel, String mail,
 			String role, ArrayList<Annonce> lesAnnonces)
