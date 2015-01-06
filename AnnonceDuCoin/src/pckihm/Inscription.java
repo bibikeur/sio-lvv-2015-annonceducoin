@@ -1,4 +1,4 @@
-package ihm;
+package pckihm;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
