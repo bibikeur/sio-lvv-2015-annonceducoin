@@ -6,7 +6,7 @@ public class Categorie
 {
 	private String nomCateg;
 	private ArrayList<SousCategorie> lesSousCateg;
-
+	
 	public String getNomCateg()
 	{
 		return nomCateg;
