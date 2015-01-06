@@ -8,7 +8,6 @@ public class SousCategorie
 	private ArrayList<Annonce> lesAnnonces;
 	
 	
-	
 
 	public SousCategorie(String nomCateg)
 	{
@@ -22,20 +21,17 @@ public class SousCategorie
 		return nomCateg;
 	}
 
-	public void setNomCateg(String nomCateg)
-	{
-		this.nomCateg = nomCateg;
-	}
 
 	public ArrayList<Annonce> getLesAnnonces()
 	{
 		return lesAnnonces;
 	}
 
-	public void setLesAnnonces(Annonce uneAnnonce)
+
+	
+	public void ajouterAnnonce (Annonce uneAnnonce)
 	{
 		this.lesAnnonces.add(uneAnnonce);
 	}
-	
 	
 }

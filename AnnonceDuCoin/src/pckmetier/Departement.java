@@ -6,12 +6,14 @@ public class Departement
 {
 	private String nomDep;
 	private ArrayList<Annonce> lesAnnonces;
-	private ArrayList<Region> lesRegions;
-
-	public Departement(String nomDep)
+	private Region laRegion;
+	
+	public Departement(String nomDep, Region laRegion)
 	{
 		//super();
 		this.nomDep = nomDep;
+		this.laRegion = laRegion;
+		this.lesAnnonces = new ArrayList<Annonce>();
 	}
 
 	public String getNomDep()
@@ -24,6 +26,9 @@ public class Departement
 		this.nomDep = nomDep;
 	}
 	
-	
+	public void ajouterAnnonce (Annonce uneAnnonce)
+	{
+		this.lesAnnonces.add(uneAnnonce);
+	}
 	
 }

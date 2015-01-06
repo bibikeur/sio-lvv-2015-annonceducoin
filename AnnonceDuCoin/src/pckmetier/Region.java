@@ -24,5 +24,9 @@ public class Region
 		this.nomRegion = nomRegion;
 	}
 	
+	public void ajouterDepartement (Departement unDepartement)
+	{
+		this.lesDepartements.add(unDepartement);
+	}
 	
 }

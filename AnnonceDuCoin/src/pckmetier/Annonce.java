@@ -18,7 +18,7 @@ public class Annonce
 	
 	
 	public Annonce(String infoAnnonce, String contactAnnonce,
-			String titreAnnonce, int prixAnnonce, String dateAnnonce, SousCategorie laSousCateg)
+			String titreAnnonce, int prixAnnonce, String dateAnnonce, SousCategorie laSousCateg, Departement leDepartement)
 	{
 		super();
 		this.infoAnnonce = infoAnnonce;
@@ -27,7 +27,9 @@ public class Annonce
 		this.prixAnnonce = prixAnnonce;
 		this.dateAnnonce = dateAnnonce;
 		this.laSousCateg = laSousCateg;
+		this.leDepartement = leDepartement;
 		this.lesPhotos = new ArrayList<Photo>();
+		this.leDepartement.ajouterAnnonce(this);
 		
 	}
 
@@ -65,6 +67,16 @@ public class Annonce
 	public ArrayList<Photo> getLesPhotos()
 	{
 		return lesPhotos;
+	}
+	
+	public ArrayList<Annonce> rechercheAnnonceRegion(Region uneRegion)
+	{
+		ArrayList<Annonce> annonceRegion;
+		annonceRegion = new ArrayList<Annonce>();
+		
+		for 
+		
+		return annonceRegion;
 	}
 	
 	
