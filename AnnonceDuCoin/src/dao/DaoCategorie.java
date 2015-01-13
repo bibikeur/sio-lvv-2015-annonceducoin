@@ -6,13 +6,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 
-import pckihm.accueil;
+import pckmetier.Categorie;
 import pckmetier.Region;
 
-public class DaoRegion
+public class DaoCategorie
 {
-	
-	public static Vector<Region> getLesRegions()
+	public static Vector<Categorie> getLesCateg()
 	{
 		
 		String nomPilote;
@@ -23,10 +22,10 @@ public class DaoRegion
 		final String url ="jdbc:mysql://localhost/anonceducoin";
 		final String user = "root";
 		final String mdp = "";
-		Vector<Region> lesRegions;
-		String listeRegion;
-		listeRegion = "SELECT NOMREGION FROM REGION";
-		lesRegions = new Vector<Region>();
+		Vector<Categorie> lesCategories;
+		String listeCateg;
+		listeCateg = "SELECT NOMCATEGORIE FROM CATEGORIE";
+		lesCategories = new Vector<Categorie>();
 		try
 		{
 			Class.forName(nomPilote);
@@ -41,14 +40,14 @@ public class DaoRegion
 		try
 		{
 			lienBd = connect.createStatement();
-			res = lienBd.executeQuery(listeRegion);
+			res = lienBd.executeQuery(listeCateg);
 			
 			while (res.next())
 			{
-				Region laRegion;
+				Categorie laCateg;
 				
-				laRegion = new Region(res.getString("NOMREGION"));
-				lesRegions.add(laRegion);
+				laCateg = new Categorie(res.getString("NOMCATEGORIE"));
+				lesCategories.add(laCateg);
 			}
 			
 		} catch (SQLException e)
@@ -57,6 +56,6 @@ public class DaoRegion
 			e.printStackTrace();
 		}
 		
-		return lesRegions;
+		return lesCategories;
 	}
 }
