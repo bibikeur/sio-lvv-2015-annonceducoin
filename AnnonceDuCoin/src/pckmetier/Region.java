@@ -12,6 +12,7 @@ public class Region
 	{
 		//super();
 		this.nomRegion = nomRegion;
+		this.lesDepartements = new ArrayList<Departement>();
 	}
 
 	public String getNomRegion()
@@ -28,5 +29,13 @@ public class Region
 	{
 		this.lesDepartements.add(unDepartement);
 	}
+
+	@Override
+	public String toString()
+	{
+		return  nomRegion;
+	}
+	
+	
 	
 }

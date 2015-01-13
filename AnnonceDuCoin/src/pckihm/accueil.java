@@ -1,19 +1,19 @@
 package pckihm;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Font;
 
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JComboBox;
-import javax.swing.JRadioButton;
-import javax.swing.JButton;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
+
+import dao.DaoRegion;
 
 public class accueil extends JFrame
 {
@@ -26,7 +26,7 @@ public class accueil extends JFrame
 	private JMenuBar menuBar;
 	private JMenu menuAccueil;
 	private JMenu menu;
-	private JMenu mnAnnonce;
+	private JMenu menuAnnonce;
 	private JMenuItem mntmRechercher;
 	private JMenuItem mntmDposerUneAnnonce;
 	private JMenu menuConnexion;
@@ -70,14 +70,14 @@ public class accueil extends JFrame
 		menu = new JMenu("");
 		menuBar.add(menu);
 		
-		mnAnnonce = new JMenu("Annonce");
-		menuBar.add(mnAnnonce);
+		menuAnnonce = new JMenu("Annonce");
+		menuBar.add(menuAnnonce);
 		
 		mntmRechercher = new JMenuItem("Rechercher");
-		mnAnnonce.add(mntmRechercher);
+		menuAnnonce.add(mntmRechercher);
 		
 		mntmDposerUneAnnonce = new JMenuItem("D\u00E9poser une annonce");
-		mnAnnonce.add(mntmDposerUneAnnonce);
+		menuAnnonce.add(mntmDposerUneAnnonce);
 		
 		menuConnexion = new JMenu("Connexion");
 		menuBar.add(menuConnexion);
@@ -99,7 +99,7 @@ public class accueil extends JFrame
 		lblSelectionRegion.setBounds(336, 110, 104, 14);
 		contentPane.add(lblSelectionRegion);
 		
-		cbRegion = new JComboBox();
+		cbRegion = new JComboBox(DaoRegion.getLesRegions());
 		cbRegion.setBounds(284, 135, 197, 22);
 		contentPane.add(cbRegion);
 		
