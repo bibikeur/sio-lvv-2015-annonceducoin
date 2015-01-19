@@ -14,8 +14,10 @@ import javax.swing.JToolBar;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class Connexion extends JFrame
+public class Connexion extends JFrame implements ActionListener
 {
 
 	private JPanel contentPane;
@@ -78,6 +80,7 @@ public class Connexion extends JFrame
 		mnAnnonce.add(menuPoster);
 		
 		menuConnexion = new JMenu("Connexion");
+		menuConnexion.addActionListener(this);
 		menuBar.add(menuConnexion);
 		
 		menuInscription = new JMenu("Inscription");
@@ -113,5 +116,12 @@ public class Connexion extends JFrame
 		btnConnexion = new JButton("Connexion");
 		btnConnexion.setBounds(145, 151, 109, 23);
 		contentPane.add(btnConnexion);
+	}
+	public void actionPerformed(ActionEvent evt) 
+	{
+		if (evt.getSource() == this.menuConnexion)
+		{
+			new Connexion().setVisible(true);
+		}
 	}
 }

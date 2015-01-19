@@ -2,6 +2,8 @@ package pckihm;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -13,10 +15,12 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import pckmetier.Region;
 import dao.DaoCategorie;
+import dao.DaoDepartement;
 import dao.DaoRegion;
 
-public class FenetreRecherche extends JFrame
+public class FenetreRecherche extends JFrame implements ActionListener
 {
 
 	private JPanel contentPane;
@@ -105,11 +109,10 @@ public class FenetreRecherche extends JFrame
 		lblNewLabel.setBounds(121, 92, 46, 14);
 		contentPane.add(lblNewLabel);
 		
-		cbDepartement = new JComboBox();
-		cbDepartement.setBounds(177, 121, 160, 22);
-		contentPane.add(cbDepartement);
+		
 		
 		cbRegion = new JComboBox(DaoRegion.getLesRegions());
+		cbRegion.addActionListener(this);
 		cbRegion.setBounds(177, 88, 160, 22);
 		contentPane.add(cbRegion);
 		
@@ -130,7 +133,19 @@ public class FenetreRecherche extends JFrame
 		contentPane.add(lblNewLabel_1);
 		
 		btnRechercher = new JButton("Rechercher");
+		btnRechercher.addActionListener(this);
 		btnRechercher.setBounds(343, 197, 108, 43);
 		contentPane.add(btnRechercher);
+	}
+	public void actionPerformed(ActionEvent evt) 
+	{
+		if(evt.getSource() == this.btnRechercher)
+		{
+			cbDepartement = new JComboBox(DaoDepartement.getLesDepartement((Region)this.cbDepartement.getSelectedItem()));
+			cbDepartement.setBounds(177, 121, 160, 22);
+			contentPane.add(cbDepartement);
+			;
+			
+		}
 	}
 }
