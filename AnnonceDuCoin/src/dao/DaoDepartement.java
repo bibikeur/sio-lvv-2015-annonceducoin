@@ -20,7 +20,7 @@ public class DaoDepartement
 		Statement lienBd;
 		Statement lienRegDep =
 		null;
-		Statement lienRegion;
+//		Statement lienRegion;
 //		ResultSet regDep;
 		ResultSet res;
 		ResultSet resReg;
@@ -48,7 +48,7 @@ public class DaoDepartement
 		{
 			lienBd = connect.createStatement();
 			res = lienBd.executeQuery(listeDepartement);
-			lienRegion = connect.createStatement();
+//			lienRegion = connect.createStatement();
 			resReg = lienBd.executeQuery(listeRegion);
 			while (res.next())
 			{
