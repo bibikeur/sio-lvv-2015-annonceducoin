@@ -109,7 +109,9 @@ public class FenetreRecherche extends JFrame implements ActionListener
 		lblNewLabel.setBounds(121, 92, 46, 14);
 		contentPane.add(lblNewLabel);
 		
-		
+		cbDepartement = new JComboBox(DaoDepartement.getLesDepartement((Region)this.cbDepartement.getSelectedItem()));
+		cbDepartement.setBounds(177, 121, 160, 22);
+		contentPane.add(cbDepartement);
 		
 		cbRegion = new JComboBox(DaoRegion.getLesRegions());
 		cbRegion.addActionListener(this);
@@ -137,15 +139,20 @@ public class FenetreRecherche extends JFrame implements ActionListener
 		btnRechercher.setBounds(343, 197, 108, 43);
 		contentPane.add(btnRechercher);
 	}
-	public void actionPerformed(ActionEvent evt) 
+//	public void actionPerformed(ActionEvent evt) 
+//	{
+//		if(evt.getSource() == this.btnRechercher)
+//		{
+//			cbDepartement = new JComboBox(DaoDepartement.getLesDepartement((Region)this.cbDepartement.getSelectedItem()));
+//			cbDepartement.setBounds(177, 121, 160, 22);
+//			contentPane.add(cbDepartement);
+//			
+//		}
+//	}
+
+	public void actionPerformed(ActionEvent arg0)
 	{
-		if(evt.getSource() == this.btnRechercher)
-		{
-			cbDepartement = new JComboBox(DaoDepartement.getLesDepartement((Region)this.cbDepartement.getSelectedItem()));
-			cbDepartement.setBounds(177, 121, 160, 22);
-			contentPane.add(cbDepartement);
-			;
-			
-		}
+		// TODO Stub de la méthode généré automatiquement
+		
 	}
 }
