@@ -1,21 +1,23 @@
 package pckihm;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.JTextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
-import javax.swing.JToolBar;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JMenu;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+
+import dao.DaoUtilisateur;
+import javax.swing.JPasswordField;
 
 public class Connexion extends JFrame implements ActionListener
 {
@@ -25,7 +27,6 @@ public class Connexion extends JFrame implements ActionListener
 	private JTextField txtLogin;
 	private JLabel lblIdentifiant;
 	private JLabel lblMotDePasse;
-	private JTextField txtMdp;
 	private JButton btnConnexion;
 	private JMenuBar menuBar;
 	private JMenu mnAccueil;
@@ -34,6 +35,7 @@ public class Connexion extends JFrame implements ActionListener
 	private JMenuItem menuPoster;
 	private JMenu menuConnexion;
 	private JMenu menuInscription;
+	private JPasswordField txtMdp;
 
 	/**
 	 * Launch the application.
@@ -80,7 +82,6 @@ public class Connexion extends JFrame implements ActionListener
 		mnAnnonce.add(menuPoster);
 		
 		menuConnexion = new JMenu("Connexion");
-		menuConnexion.addActionListener(this);
 		menuBar.add(menuConnexion);
 		
 		menuInscription = new JMenu("Inscription");
@@ -108,20 +109,22 @@ public class Connexion extends JFrame implements ActionListener
 		lblMotDePasse.setBounds(35, 123, 96, 14);
 		contentPane.add(lblMotDePasse);
 		
-		txtMdp = new JTextField();
-		txtMdp.setColumns(10);
-		txtMdp.setBounds(133, 120, 130, 20);
-		contentPane.add(txtMdp);
-		
 		btnConnexion = new JButton("Connexion");
+		btnConnexion.addActionListener(this);
 		btnConnexion.setBounds(145, 151, 109, 23);
 		contentPane.add(btnConnexion);
+		
+		txtMdp = new JPasswordField();
+		txtMdp.setBounds(133, 120, 130, 20);
+		contentPane.add(txtMdp);
 	}
-	public void actionPerformed(ActionEvent evt) 
+	public void actionPerformed(ActionEvent evt)
 	{
-		if (evt.getSource() == this.menuConnexion)
-		{
-			new Connexion().setVisible(true);
-		}
+		if (evt.getSource() == btnConnexion )
+       	 {
+			JOptionPane.showMessageDialog(this, "Utilisateur" + DaoUtilisateur.getConnexion(txtLogin.getText(), txtMdp.getText()));
+       	 }
+	   
+       
 	}
 }
