@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -109,9 +110,9 @@ public class FenetreRecherche extends JFrame implements ActionListener
 		lblNewLabel.setBounds(121, 92, 46, 14);
 		contentPane.add(lblNewLabel);
 		
-		cbDepartement = new JComboBox(DaoDepartement.getLesDepartement((Region)this.cbDepartement.getSelectedItem()));
-		cbDepartement.setBounds(177, 121, 160, 22);
-		contentPane.add(cbDepartement);
+//		cbDepartement = new JComboBox();
+//		cbDepartement.setBounds(177, 121, 160, 22);
+//		contentPane.add(cbDepartement);
 		
 		cbRegion = new JComboBox(DaoRegion.getLesRegions());
 		cbRegion.addActionListener(this);
@@ -130,29 +131,37 @@ public class FenetreRecherche extends JFrame implements ActionListener
 		lblSousCatgorie.setBounds(368, 125, 108, 14);
 		contentPane.add(lblSousCatgorie);
 		
-		lblNewLabel_1 = new JLabel("D\u00E9partement :");
-		lblNewLabel_1.setBounds(92, 125, 89, 14);
-		contentPane.add(lblNewLabel_1);
+		
 		
 		btnRechercher = new JButton("Rechercher");
 		btnRechercher.addActionListener(this);
 		btnRechercher.setBounds(343, 197, 108, 43);
 		contentPane.add(btnRechercher);
 	}
-//	public void actionPerformed(ActionEvent evt) 
-//	{
-//		if(evt.getSource() == this.btnRechercher)
-//		{
-//			cbDepartement = new JComboBox(DaoDepartement.getLesDepartement((Region)this.cbDepartement.getSelectedItem()));
-//			cbDepartement.setBounds(177, 121, 160, 22);
-//			contentPane.add(cbDepartement);
-//			
-//		}
-//	}
+	
 
-	public void actionPerformed(ActionEvent arg0)
+	public void actionPerformed(ActionEvent evt) 
 	{
-		// TODO Stub de la méthode généré automatiquement
 		
+		if(evt.getSource() == this.cbRegion)
+		{
+			Vector<Region> lesRegions;
+			lesRegions = DaoRegion.getLesRegions();
+			Region uneReg;
+			uneReg = new Region();
+			uneReg = DaoDepartement.rechercheRegion(lesRegions, this.cbRegion.getSelectedItem().toString());
+			
+			
+			lblNewLabel_1 = new JLabel("D\u00E9partement :");
+			lblNewLabel_1.setBounds(92, 125, 89, 14);
+			contentPane.add(lblNewLabel_1);
+			
+			cbDepartement = new JComboBox(DaoDepartement.getLesDepartement(uneReg));
+			cbDepartement.setBounds(177, 121, 160, 22);
+			contentPane.add(cbDepartement);
+
+		}
 	}
+
+
 }
