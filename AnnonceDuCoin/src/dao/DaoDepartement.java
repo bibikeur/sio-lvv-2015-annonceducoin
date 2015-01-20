@@ -18,21 +18,17 @@ public class DaoDepartement
 		nomPilote = "org.gjt.mm.mysql.Driver";
 		Connection connect;
 		Statement lienBd;
-		Statement lienRegDep =
-		null;
-//		Statement lienRegion;
-//		ResultSet regDep;
 		ResultSet res;
-		ResultSet resReg;
 		final String url ="jdbc:mysql://localhost/anonceducoin";
 		final String user = "root";
 		final String mdp = "";
 		Vector<Departement> lesDepartements;
-		String listeDepartement;
-		String listeRegion;
-		listeDepartement = "SELECT * FROM DEPARTEMENT";
-		listeRegion = "SELECT NOMREGION FROM REGION";
+		String reqRegDep = "SELECT nomdepartement FROM DEPARTEMENT, REGION WHERE DEPARTEMENT.idregion = REGION.idregion AND nomregion = '";
+		String nomRegion = laRegion.getNomRegion();
+		reqRegDep = reqRegDep + nomRegion + "'";
 		lesDepartements = new Vector<Departement>();
+		Departement unDep;
+		
 		try
 		{
 			Class.forName(nomPilote);
@@ -47,21 +43,11 @@ public class DaoDepartement
 		try
 		{
 			lienBd = connect.createStatement();
-			res = lienBd.executeQuery(listeDepartement);
-//			lienRegion = connect.createStatement();
-			resReg = lienBd.executeQuery(listeRegion);
+			res = lienBd.executeQuery(reqRegDep);
 			while (res.next())
 			{
-				Departement leDepartement;
-//				String reqRegDep;
-//				Region laRegion1;
-				
-//				laRegion1 = new Region(res.getString("NOMREGION"));
-//				
-//				reqRegDep = "SELECT DISTINCT NOMREGION FROM REGION, DEPARTEMENT WHERE REGION.IDREGION = DEPARTEMENT.IDREGION AND DEPARTEMENT.IDREGION =" + res.getInt("IDREGION");
-//				regDep = lienRegDep.executeQuery(reqRegDep);
-				leDepartement = new Departement(res.getString("NOMDEPARTEMENT"), laRegion);
-				lesDepartements.add(leDepartement);
+				unDep = new Departement(res.getString("NOMDEPARTEMENT"), laRegion);
+				lesDepartements.add(unDep);
 			}
 			
 		} catch (SQLException e)
@@ -71,5 +57,23 @@ public class DaoDepartement
 		}
 		
 		return lesDepartements;
-}
 	}
+	
+	public static Region rechercheRegion(Vector<Region> lesRegions, String nomReg)
+	{
+		Region uneReg = null;
+		for(Region uneRegion : lesRegions)
+		{
+			if(uneRegion.getNomRegion().equals(nomReg))
+			{
+				uneReg = uneRegion;	
+			}
+		}
+		return uneReg;
+		
+	}
+	
+
+}
+
+
