@@ -1,6 +1,7 @@
 package pckmetier;
 
 import java.util.ArrayList;
+import java.util.Vector;
 
 public class Region
 {
@@ -8,6 +9,10 @@ public class Region
 	private ArrayList<Departement> lesDepartements;
 	
 	
+	public Region()
+	{
+		
+	}
 	public Region(String nomRegion)
 	{
 		//super();
@@ -35,6 +40,8 @@ public class Region
 	{
 		return  nomRegion;
 	}
+	
+	
 	
 	
 	

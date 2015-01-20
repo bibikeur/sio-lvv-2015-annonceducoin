@@ -30,5 +30,12 @@ public class Departement
 	{
 		this.lesAnnonces.add(uneAnnonce);
 	}
+
+	@Override
+	public String toString()
+	{
+		return  nomDep;
+	}
+	
 	
 }
