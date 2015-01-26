@@ -48,7 +48,6 @@ public class DaoCategorie
 				
 				laCateg = new Categorie(res.getString("NOMCATEGORIE"));
 				lesCategories.add(laCateg);
-				b
 			}
 			
 		} catch (SQLException e)
