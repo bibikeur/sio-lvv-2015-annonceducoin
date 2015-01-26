@@ -11,7 +11,7 @@ import pckmetier.SousCategorie;
 
 public class DaoSousCategorie 
 {
-	public static Vector<SousCategorie> getLesDepartement(Categorie laCateg)
+	public static Vector<SousCategorie> getLesSousCateg(Categorie laCateg)
 	{
 		
 		String nomPilote;
