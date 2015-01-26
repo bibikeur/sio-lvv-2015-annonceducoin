@@ -16,10 +16,12 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import pckmetier.Categorie;
 import pckmetier.Region;
 import dao.DaoCategorie;
 import dao.DaoDepartement;
 import dao.DaoRegion;
+import dao.DaoSousCategorie;
 
 public class FenetreRecherche extends JFrame implements ActionListener
 {
@@ -119,17 +121,15 @@ public class FenetreRecherche extends JFrame implements ActionListener
 		cbRegion.setBounds(177, 88, 160, 22);
 		contentPane.add(cbRegion);
 		
-		cbSousCateg = new JComboBox();
-		cbSousCateg.setBounds(486, 121, 160, 22);
-		contentPane.add(cbSousCateg);
+		
 		
 		lblCatgorie = new JLabel("Cat\u00E9gorie :");
 		lblCatgorie.setBounds(410, 92, 75, 14);
 		contentPane.add(lblCatgorie);
 		
-		lblSousCatgorie = new JLabel("Sous cat\u00E9gorie :");
-		lblSousCatgorie.setBounds(368, 125, 108, 14);
-		contentPane.add(lblSousCatgorie);
+//		lblSousCatgorie = new JLabel("Sous cat\u00E9gorie :");
+//		lblSousCatgorie.setBounds(368, 125, 108, 14);
+//		contentPane.add(lblSousCatgorie);
 		
 		
 		
@@ -143,7 +143,7 @@ public class FenetreRecherche extends JFrame implements ActionListener
 	public void actionPerformed(ActionEvent evt) 
 	{
 		
-		if(evt.getSource() == this.cbRegion)
+		if(evt.getSource() == this.btnRechercher)
 		{
 			Vector<Region> lesRegions;
 			lesRegions = DaoRegion.getLesRegions();
@@ -160,6 +160,19 @@ public class FenetreRecherche extends JFrame implements ActionListener
 			cbDepartement.setBounds(177, 121, 160, 22);
 			contentPane.add(cbDepartement);
 
+		}
+		
+		if(evt.getSource() == this.cbCateg)
+		{
+		Vector<Categorie> lesCateg;
+		lesCateg = DaoCategorie.getLesCateg();
+		Categorie uneCateg;
+		uneCateg = new Categorie();
+		uneCateg = DaoSousCategorie.rechercheCateg(lesCateg, this.cbCateg.getSelectedItem().toString());
+		
+		cbSousCateg = new JComboBox(DaoSousCategorie.getLesSousCateg(uneCateg));
+		cbSousCateg.setBounds(486, 121, 160, 22);
+		contentPane.add(cbSousCateg);
 		}
 	}
 
