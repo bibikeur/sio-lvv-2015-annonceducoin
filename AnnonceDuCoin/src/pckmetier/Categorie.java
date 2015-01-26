@@ -7,6 +7,10 @@ public class Categorie
 	private String nomCateg;
 	private ArrayList<SousCategorie> lesSousCateg;
 	
+	public Categorie()
+	{
+	
+	}
 	
 	public Categorie(String nomCateg)
 	{
