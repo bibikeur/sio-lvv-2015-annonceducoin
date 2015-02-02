@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -13,13 +14,13 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import dao.DaoUtilisateur;
-import javax.swing.JPasswordField;
 
-public class Connexion extends JFrame implements ActionListener
+public class Connexion extends JDialog implements ActionListener
 {
 
 	private JPanel contentPane;
@@ -36,6 +37,7 @@ public class Connexion extends JFrame implements ActionListener
 	private JMenu menuConnexion;
 	private JMenu menuInscription;
 	private JPasswordField txtMdp;
+	private JButton btnAnnuler;
 
 	/**
 	 * Launch the application.
@@ -63,7 +65,7 @@ public class Connexion extends JFrame implements ActionListener
 	 */
 	public Connexion()
 	{
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		
 		menuBar = new JMenuBar();
@@ -111,12 +113,17 @@ public class Connexion extends JFrame implements ActionListener
 		
 		btnConnexion = new JButton("Connexion");
 		btnConnexion.addActionListener(this);
-		btnConnexion.setBounds(145, 151, 109, 23);
+		btnConnexion.setBounds(211, 154, 109, 23);
 		contentPane.add(btnConnexion);
 		
 		txtMdp = new JPasswordField();
 		txtMdp.setBounds(133, 120, 130, 20);
 		contentPane.add(txtMdp);
+		
+		btnAnnuler = new JButton("Annuler");
+		btnAnnuler.addActionListener(this);
+		btnAnnuler.setBounds(78, 154, 91, 23);
+		contentPane.add(btnAnnuler);
 	}
 	public void actionPerformed(ActionEvent evt)
 	{
@@ -124,6 +131,12 @@ public class Connexion extends JFrame implements ActionListener
        	 {
 			JOptionPane.showMessageDialog(this, "Utilisateur" + DaoUtilisateur.getConnexion(txtLogin.getText(), txtMdp.getText()));
        	 }
+		
+		if (evt.getSource() == this.btnAnnuler )
+		{
+			this.dispose();
+			
+		}
 	   
        
 	}

@@ -4,6 +4,8 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.Vector;
 
 import javax.swing.JButton;
@@ -15,6 +17,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.MenuEvent;
+import javax.swing.event.MenuListener;
 
 import pckmetier.Categorie;
 import pckmetier.Region;
@@ -22,10 +26,8 @@ import dao.DaoCategorie;
 import dao.DaoDepartement;
 import dao.DaoRegion;
 import dao.DaoSousCategorie;
-import java.awt.event.ItemListener;
-import java.awt.event.ItemEvent;
 
-public class FenetreRecherche extends JFrame implements ActionListener, ItemListener
+public class FenetreRecherche extends JFrame implements ActionListener, ItemListener, MenuListener
 {
 
 	private JPanel contentPane;
@@ -92,9 +94,12 @@ public class FenetreRecherche extends JFrame implements ActionListener, ItemList
 		menuAnnonce.add(mntmDeposerAnnonce);
 		
 		menuConnexion = new JMenu("Connexion");
+		menuConnexion.addMenuListener(this);
+		menuConnexion.addActionListener(this);
 		menuBar.add(menuConnexion);
 		
 		menuInscription = new JMenu("Inscription");
+		menuInscription.addMenuListener(this);
 		menuBar.add(menuInscription);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -125,6 +130,7 @@ public class FenetreRecherche extends JFrame implements ActionListener, ItemList
 ///		contentPane.add(cbDepartement);
 		
 		cbRegion = new JComboBox(DaoRegion.getLesRegions());
+		cbRegion.addItemListener(this);
 		cbRegion.addActionListener(this);
 		cbRegion.setBounds(177, 88, 160, 22);
 		contentPane.add(cbRegion);
@@ -153,6 +159,14 @@ public class FenetreRecherche extends JFrame implements ActionListener, ItemList
 	{
 		
 		
+		
+		
+		
+	}
+
+	public void itemStateChanged(ItemEvent evt) 
+	{
+		
 		if(evt.getSource() == this.cbRegion)
 		{
 			Vector<Region> lesRegions;
@@ -167,11 +181,6 @@ public class FenetreRecherche extends JFrame implements ActionListener, ItemList
 			this.lblDep.setVisible(true);
 		}
 		
-		
-	}
-
-	public void itemStateChanged(ItemEvent evt) 
-	{
 		if(evt.getSource() == this.cbCateg)
 		{
 		Vector<Categorie> lesCateg;
@@ -184,6 +193,31 @@ public class FenetreRecherche extends JFrame implements ActionListener, ItemList
 		cbSousCateg.setBounds(486, 121, 160, 22);
 		contentPane.add(cbSousCateg);
 		this.lblSousCatgorie.setVisible(true);
+		}
+	}
+	public void menuCanceled(MenuEvent arg0) {
+	}
+	public void menuDeselected(MenuEvent arg0) {
+	}
+	public void menuSelected(MenuEvent evt) 
+	{
+		if ( evt.getSource() == this.menuConnexion)
+		{
+			Connexion fenCo = new Connexion();
+			fenCo.setBounds(20,20,400,300);
+			fenCo.setLocation(100, 100);
+			fenCo.setModal(true);
+			fenCo.setVisible(true);
+			fenCo.setTitle("Connexion");
+		}
+		if ( evt.getSource() == this.menuInscription)
+		{
+			Inscription fenInscription = new Inscription();
+			fenInscription.setBounds(100, 100, 769, 520);
+			fenInscription.setLocation(100, 100);
+			fenInscription.setModal(true);
+			fenInscription.setVisible(true);
+			fenInscription.setTitle("Connexion");
 		}
 	}
 }
