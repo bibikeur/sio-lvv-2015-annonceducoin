@@ -14,8 +14,10 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import dao.DaoRegion;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class accueil extends JFrame
+public class accueil extends JFrame implements ActionListener
 {
 
 	private JPanel contentPane;
@@ -104,7 +106,12 @@ public class accueil extends JFrame
 		contentPane.add(cbRegion);
 		
 		btnRechercher = new JButton("Rechercher");
+		btnRechercher.addActionListener(this);
 		btnRechercher.setBounds(336, 183, 104, 23);
 		contentPane.add(btnRechercher);
+	}
+	public void actionPerformed(ActionEvent arg0) 
+	{
+		
 	}
 }

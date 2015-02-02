@@ -7,27 +7,42 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+
 import java.awt.Font;
+
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
-public class PosterAnnonce extends JFrame {
+import pckmetier.Categorie;
+import pckmetier.Region;
+import dao.DaoCategorie;
+import dao.DaoDepartement;
+import dao.DaoRegion;
+import dao.DaoSousCategorie;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.util.Vector;
+
+public class PosterAnnonce extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 	private JLabel lblPosterUneAnnonce;
 	private JLabel lblTitre;
 	private JLabel lblCategorie;
-	private JComboBox comboBox;
+	private JComboBox cbCateg;
 	private JLabel lblDescriptif;
-	private JTextField textField;
+	private JTextField txtDescriptif;
 	private JLabel lblNewLabel;
 	private JLabel lblVille;
 	private JLabel lblRegion;
 	private JLabel lblDpartement;
-	private JComboBox comboBox_1;
-	private JComboBox comboBox_2;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JComboBox cbRegion;
+	private JComboBox cbDepartement;
+	private JTextField txtVille;
+	private JTextField txtTitre;
+	private JComboBox cbSousCateg;
+	private JLabel lblSousCatgorie;
 
 	/**
 	 * Launch the application.
@@ -62,25 +77,26 @@ public class PosterAnnonce extends JFrame {
 		contentPane.add(lblPosterUneAnnonce);
 		
 		lblTitre = new JLabel("Titre:");
-		lblTitre.setBounds(95, 283, 46, 14);
+		lblTitre.setBounds(95, 253, 46, 14);
 		contentPane.add(lblTitre);
 		
 		lblCategorie = new JLabel("Categorie:");
-		lblCategorie.setBounds(77, 321, 77, 14);
+		lblCategorie.setBounds(77, 287, 77, 14);
 		contentPane.add(lblCategorie);
 		
-		comboBox = new JComboBox();
-		comboBox.setBounds(164, 317, 184, 22);
-		contentPane.add(comboBox);
+		cbCateg = new JComboBox(DaoCategorie.getLesCateg());
+		cbCateg.addActionListener(this);
+		cbCateg.setBounds(190, 283, 184, 22);
+		contentPane.add(cbCateg);
 		
-		lblDescriptif = new JLabel("Descriptif:");
+		lblDescriptif = new JLabel("Description :");
 		lblDescriptif.setBounds(77, 360, 64, 14);
 		contentPane.add(lblDescriptif);
 		
-		textField = new JTextField();
-		textField.setBounds(164, 360, 184, 120);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		txtDescriptif = new JTextField();
+		txtDescriptif.setBounds(190, 360, 184, 120);
+		contentPane.add(txtDescriptif);
+		txtDescriptif.setColumns(10);
 		
 		lblNewLabel = new JLabel("New label");
 		lblNewLabel.setBounds(571, 173, 46, 14);
@@ -95,25 +111,66 @@ public class PosterAnnonce extends JFrame {
 		contentPane.add(lblRegion);
 		
 		lblDpartement = new JLabel("D\u00E9partement:");
-		lblDpartement.setBounds(50, 190, 68, 14);
+		lblDpartement.setBounds(50, 190, 91, 14);
 		contentPane.add(lblDpartement);
+		lblDpartement.setVisible(false);
 		
-		comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(164, 161, 184, 22);
-		contentPane.add(comboBox_1);
+		cbRegion = new JComboBox(DaoRegion.getLesRegions());
+		cbRegion.addActionListener(this);
+		cbRegion.setBounds(190, 161, 184, 22);
+		contentPane.add(cbRegion);
 		
-		comboBox_2 = new JComboBox();
-		comboBox_2.setBounds(164, 186, 184, 22);
-		contentPane.add(comboBox_2);
+//		cbDepartement = new JComboBox();
+//		cbDepartement.setBounds(190, 186, 184, 22);
+//		contentPane.add(cbDepartement);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(164, 215, 184, 23);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
+		txtVille = new JTextField();
+		txtVille.setBounds(190, 215, 184, 23);
+		contentPane.add(txtVille);
+		txtVille.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(164, 279, 184, 23);
-		contentPane.add(textField_2);
+		txtTitre = new JTextField();
+		txtTitre.setColumns(10);
+		txtTitre.setBounds(190, 249, 184, 23);
+		contentPane.add(txtTitre);
+		
+//		cbSousCateg = new JComboBox();
+//		cbSousCateg.addActionListener(this);
+//		cbSousCateg.setBounds(190, 316, 184, 22);
+//		contentPane.add(cbSousCateg);
+//		
+//		lblSousCatgorie = new JLabel("Sous cat\u00E9gorie :");
+//		lblSousCatgorie.setBounds(50, 320, 91, 14);
+//		contentPane.add(lblSousCatgorie);
+	}
+	public void actionPerformed(ActionEvent evt) 
+	{
+		if(evt.getSource() == this.cbRegion)
+		{
+			Vector<Region> lesRegions;
+			lesRegions = DaoRegion.getLesRegions();
+			Region uneReg;
+			uneReg = new Region();
+			uneReg = DaoDepartement.rechercheRegion(lesRegions, this.cbRegion.getSelectedItem().toString());
+			
+			cbDepartement = new JComboBox(DaoDepartement.getLesDepartement(uneReg));
+			cbDepartement.setBounds(190, 186, 184, 22);
+			contentPane.add(cbDepartement);
+			this.lblDpartement.setVisible(true);
+		}
+		
+		if(evt.getSource() == this.cbCateg)
+		{
+		Vector<Categorie> lesCateg;
+		lesCateg = DaoCategorie.getLesCateg();
+		Categorie uneCateg;
+		uneCateg = new Categorie();
+		uneCateg = DaoSousCategorie.rechercheCateg(lesCateg, this.cbCateg.getSelectedItem().toString());
+		
+		cbSousCateg = new JComboBox(DaoSousCategorie.getLesSousCateg(uneCateg));
+		cbSousCateg.setBounds(190, 316, 184, 22);
+		contentPane.add(cbSousCateg);
+		this.lblSousCatgorie.setVisible(true);
+		}
 	}
 }

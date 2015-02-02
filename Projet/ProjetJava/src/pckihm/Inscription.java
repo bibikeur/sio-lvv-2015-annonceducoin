@@ -7,18 +7,19 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import dao.DaoUtilisateur;
-import javax.swing.JPasswordField;
 
-public class Inscription extends JFrame implements ActionListener {
+public class Inscription extends JDialog implements ActionListener {
 
 	private JPanel contentPane;
 	private JLabel lblInscription;
@@ -64,7 +65,7 @@ public class Inscription extends JFrame implements ActionListener {
 	 * Create the frame.
 	 */
 	public Inscription() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 769, 520);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -140,6 +141,7 @@ public class Inscription extends JFrame implements ActionListener {
 		contentPane.add(btnValider);
 		
 		btnQuitter = new JButton("Quitter");
+		btnQuitter.addActionListener(this);
 		btnQuitter.setBounds(606, 403, 113, 37);
 		contentPane.add(btnQuitter);
 		
