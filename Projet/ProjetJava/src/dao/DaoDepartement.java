@@ -14,14 +14,9 @@ public class DaoDepartement
 	public static Vector<Departement> getLesDepartement(Region laRegion)
 	{
 		
-		String nomPilote;
-		nomPilote = "org.gjt.mm.mysql.Driver";
 		Connection connect;
 		Statement lienBd;
 		ResultSet res;
-		final String url ="jdbc:mysql://localhost/anonceducoin";
-		final String user = "root";
-		final String mdp = "";
 		Vector<Departement> lesDepartements;
 		String reqRegDep = "SELECT nomdepartement FROM DEPARTEMENT, REGION WHERE DEPARTEMENT.idregion = REGION.idregion AND nomregion = '";
 		String nomRegion = laRegion.getNomRegion();
@@ -29,16 +24,8 @@ public class DaoDepartement
 		lesDepartements = new Vector<Departement>();
 		Departement unDep;
 		
-		try
-		{
-			Class.forName(nomPilote);
-		} catch (ClassNotFoundException e)
-		{
-			// TODO Bloc catch généré automatiquement
-			e.printStackTrace();
-		}
 		
-		connect = MySqlConnection.getConnection(url, user, mdp);
+		connect = MySqlConnection.getConnection();
 		
 		try
 		{
