@@ -10,10 +10,7 @@ public class DaoUtilisateur
 	
 	public static int getConnexion(String login, String mdp) 
 	{
-		String nomPiloteMySql = "org.gjt.mm.mysql.Driver";
-		String urlMySql = "jdbc:mysql://localhost/annonceducoin";
-		String userMySql = "root";
-		String mdpMySql = "";
+		
 		String reqUtil;
 		Connection connexion = null;
 		Statement stLienBd;
@@ -22,18 +19,11 @@ public class DaoUtilisateur
 		res = 0;
 		
 		reqUtil = "SELECT loginutilisateur, mdputilisateur, roleutilisateur FROM UTILISATEUR";
-		try
-		{
-			Class.forName(nomPiloteMySql);		
-		}
-		catch(ClassNotFoundException e)
-		{
-			System.out.println("problème de chargement driver" + e.getMessage());
-		}
+	
 		
 		try 
 		{
-			connexion = MySqlConnection.getConnection(urlMySql, userMySql, mdpMySql);
+			connexion = MySqlConnection.getConnection();
 			stLienBd = connexion.createStatement();
 			resultat = stLienBd.executeQuery(reqUtil);
 			
@@ -61,10 +51,7 @@ public class DaoUtilisateur
 	
 	public static int  getInscription(String nom, String prenom, String rue, String ville, String cp, String tel, String login, String mdp, String role)
 	{
-		String nomPiloteMySql = "org.gjt.mm.mysql.Driver";
-		String urlMySql = "jdbc:mysql://localhost/annonceducoin";
-		String userMySql = "root";
-		String mdpMySql = "";
+		
 		String reqInscription;
 		Connection connexion = null;
 		Statement stLienBdInsert;
@@ -78,18 +65,11 @@ public class DaoUtilisateur
 				
 					
 					
-		try
-		{
-			Class.forName(nomPiloteMySql);		
-		}
-		catch(ClassNotFoundException e)
-		{
-			System.out.println("problème de chargement driver" + e.getMessage());
-		}
+		
 		
 		try 
 		{
-			connexion = MySqlConnection.getConnection(urlMySql, userMySql, mdpMySql);
+			connexion = MySqlConnection.getConnection();
 			stLienBdInsert = connexion.createStatement();
 			resultat = stLienBdInsert.executeUpdate(reqInscription);
 			

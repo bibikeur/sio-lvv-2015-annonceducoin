@@ -38,7 +38,7 @@ public class DaoSousCategorie
 			e.printStackTrace();
 		}
 		
-		connect = MySqlConnection.getConnection(url, user, mdp);
+		connect = MySqlConnection.getConnection();
 		
 		try
 		{
