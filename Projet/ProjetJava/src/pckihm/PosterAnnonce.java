@@ -2,8 +2,11 @@ package pckihm;
 
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Vector;
 
 import javax.swing.JComboBox;
@@ -18,16 +21,15 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import pckmetier.Categorie;
+import pckmetier.Departement;
 import pckmetier.Region;
+import pckmetier.SousCategorie;
 import dao.DaoCategorie;
 import dao.DaoDepartement;
 import dao.DaoRegion;
 import dao.DaoSousCategorie;
 
-import java.awt.event.MouseListener;
-import java.awt.event.MouseEvent;
-
-public class PosterAnnonce extends JDialog implements ActionListener, MouseListener {
+public class PosterAnnonce extends JDialog implements MouseListener, ItemListener {
 
 	private JPanel contentPane;
 	private JLabel lblPosterUneAnnonce;
@@ -45,7 +47,7 @@ public class PosterAnnonce extends JDialog implements ActionListener, MouseListe
 	private JTextField txtVille;
 	private JTextField txtTitre;
 	private JComboBox cbSousCateg;
-	private JLabel lblSousCatgorie;
+	private JLabel lblSousCategorie;
 	private JMenuBar menuBar;
 	private JMenu mnAccueil;
 	private JMenu mnAnnonce;
@@ -121,7 +123,7 @@ public class PosterAnnonce extends JDialog implements ActionListener, MouseListe
 		contentPane.add(lblCategorie);
 		
 		cbCateg = new JComboBox(DaoCategorie.getLesCateg());
-		cbCateg.addActionListener(this);
+		cbCateg.addItemListener(this);
 		cbCateg.setBounds(190, 283, 184, 22);
 		contentPane.add(cbCateg);
 		
@@ -151,14 +153,16 @@ public class PosterAnnonce extends JDialog implements ActionListener, MouseListe
 		contentPane.add(lblDpartement);
 		lblDpartement.setVisible(false);
 		
+		cbDepartement = new JComboBox();
+		cbDepartement.setBounds(190, 186, 184, 22);
+		contentPane.add(cbDepartement);
+		cbDepartement.setVisible(false);
+		lblDpartement.setVisible(false);
+		
 		cbRegion = new JComboBox(DaoRegion.getLesRegions());
-		cbRegion.addActionListener(this);
+		cbRegion.addItemListener(this);
 		cbRegion.setBounds(190, 161, 184, 22);
 		contentPane.add(cbRegion);
-		
-//		cbDepartement = new JComboBox();
-//		cbDepartement.setBounds(190, 186, 184, 22);
-//		contentPane.add(cbDepartement);
 		
 		txtVille = new JTextField();
 		txtVille.setBounds(190, 215, 184, 23);
@@ -170,43 +174,51 @@ public class PosterAnnonce extends JDialog implements ActionListener, MouseListe
 		txtTitre.setBounds(190, 249, 184, 23);
 		contentPane.add(txtTitre);
 		
-//		cbSousCateg = new JComboBox();
-//		cbSousCateg.addActionListener(this);
-//		cbSousCateg.setBounds(190, 316, 184, 22);
-//		contentPane.add(cbSousCateg);
-//		
-//		lblSousCatgorie = new JLabel("Sous cat\u00E9gorie :");
-//		lblSousCatgorie.setBounds(50, 320, 91, 14);
-//		contentPane.add(lblSousCatgorie);
+		cbSousCateg = new JComboBox();
+		cbSousCateg.setBounds(190, 316, 184, 22);
+		contentPane.add(cbSousCateg);
+		cbSousCateg.setVisible(false);
+		
+		lblSousCategorie = new JLabel("Sous cat\u00E9gorie :");
+		lblSousCategorie.setBounds(50, 320, 91, 14);
+		contentPane.add(lblSousCategorie);
+		lblSousCategorie.setVisible(false);
 	}
-	public void actionPerformed(ActionEvent evt) 
+	
+	public void itemStateChanged(ItemEvent event) 
 	{
-		if(evt.getSource() == this.cbRegion)
-		{
+		if (event.getSource() == this.cbRegion) 
+		{ 
+			
+			String regSelec = event.getItem().toString();
+			
 			Vector<Region> lesRegions;
 			lesRegions = DaoRegion.getLesRegions();
 			Region uneReg;
 			uneReg = new Region();
-			uneReg = DaoDepartement.rechercheRegion(lesRegions, this.cbRegion.getSelectedItem().toString());
-			
-			cbDepartement = new JComboBox(DaoDepartement.getLesDepartement(uneReg));
-			cbDepartement.setBounds(190, 186, 184, 22);
-			contentPane.add(cbDepartement);
-			this.lblDpartement.setVisible(true);
+			uneReg = DaoDepartement.rechercheRegion(lesRegions, regSelec);
+			System.out.println(uneReg);
+			cbDepartement.removeAllItems();
+			for (Departement m : DaoDepartement.getLesDepartement(uneReg))
+				cbDepartement.addItem(m);
+			cbDepartement.setVisible(true);
+			lblDpartement.setVisible(true);
 		}
 		
-		if(evt.getSource() == this.cbCateg)
+		if (event.getSource() == this.cbCateg)
 		{
-		Vector<Categorie> lesCateg;
-		lesCateg = DaoCategorie.getLesCateg();
-		Categorie uneCateg;
-		uneCateg = new Categorie();
-		uneCateg = DaoSousCategorie.rechercheCateg(lesCateg, this.cbCateg.getSelectedItem().toString());
-		
-		cbSousCateg = new JComboBox(DaoSousCategorie.getLesSousCateg(uneCateg));
-		cbSousCateg.setBounds(190, 316, 184, 22);
-		contentPane.add(cbSousCateg);
-		this.lblSousCatgorie.setVisible(true);
+			String categSelec = event.getItem().toString();
+			Vector<Categorie> lesCateg;
+			lesCateg = DaoCategorie.getLesCateg();
+			Categorie uneCateg;
+			uneCateg = new Categorie();
+			uneCateg = DaoSousCategorie.rechercheCateg(lesCateg,categSelec);
+			cbSousCateg.removeAllItems();
+			for (SousCategorie m : DaoSousCategorie.getLesSousCateg(uneCateg))
+				cbSousCateg.addItem(m);
+			cbSousCateg.setVisible(true);
+			lblSousCategorie.setVisible(true);
+			
 		}
 	}
 	public void mouseClicked(MouseEvent arg0) {
