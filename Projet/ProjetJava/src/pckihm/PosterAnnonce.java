@@ -2,6 +2,7 @@ package pckihm;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -16,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -28,8 +30,11 @@ import dao.DaoCategorie;
 import dao.DaoDepartement;
 import dao.DaoRegion;
 import dao.DaoSousCategorie;
+import dao.DaoUtilisateur;
 
-public class PosterAnnonce extends JDialog implements MouseListener, ItemListener {
+import javax.swing.JButton;
+
+public class PosterAnnonce extends JDialog implements ActionListener, MouseListener, ItemListener {
 
 	private JPanel contentPane;
 	private JLabel lblPosterUneAnnonce;
@@ -38,7 +43,6 @@ public class PosterAnnonce extends JDialog implements MouseListener, ItemListene
 	private JComboBox cbCateg;
 	private JLabel lblDescriptif;
 	private JTextField txtDescriptif;
-	private JLabel lblNewLabel;
 	private JLabel lblVille;
 	private JLabel lblRegion;
 	private JLabel lblDpartement;
@@ -55,7 +59,7 @@ public class PosterAnnonce extends JDialog implements MouseListener, ItemListene
 	private JMenuItem mnDeposer;
 	private JMenu mnConnexion;
 	private JMenu mnInscription;
-
+	private JButton btnAnnuler;
 	/**
 	 * Launch the application.
 	 */
@@ -115,73 +119,78 @@ public class PosterAnnonce extends JDialog implements MouseListener, ItemListene
 		contentPane.add(lblPosterUneAnnonce);
 		
 		lblTitre = new JLabel("Titre:");
-		lblTitre.setBounds(95, 253, 46, 14);
+		lblTitre.setBounds(87, 208, 36, 14);
 		contentPane.add(lblTitre);
 		
 		lblCategorie = new JLabel("Categorie:");
-		lblCategorie.setBounds(77, 287, 77, 14);
+		lblCategorie.setBounds(65, 241, 77, 14);
 		contentPane.add(lblCategorie);
 		
 		cbCateg = new JComboBox(DaoCategorie.getLesCateg());
 		cbCateg.addItemListener(this);
-		cbCateg.setBounds(190, 283, 184, 22);
+		cbCateg.setBounds(190, 233, 184, 22);
 		contentPane.add(cbCateg);
 		
 		lblDescriptif = new JLabel("Description :");
-		lblDescriptif.setBounds(77, 360, 64, 14);
+		lblDescriptif.setBounds(404, 114, 73, 14);
 		contentPane.add(lblDescriptif);
 		
 		txtDescriptif = new JTextField();
-		txtDescriptif.setBounds(190, 360, 184, 120);
+		txtDescriptif.setBounds(487, 114, 252, 174);
 		contentPane.add(txtDescriptif);
 		txtDescriptif.setColumns(10);
 		
-		lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(571, 173, 46, 14);
-		contentPane.add(lblNewLabel);
-		
 		lblVille = new JLabel("Ville:");
-		lblVille.setBounds(95, 219, 46, 14);
+		lblVille.setBounds(95, 173, 46, 14);
 		contentPane.add(lblVille);
 		
 		lblRegion = new JLabel("R\u00E9gion:");
-		lblRegion.setBounds(82, 165, 46, 14);
+		lblRegion.setBounds(77, 114, 46, 14);
 		contentPane.add(lblRegion);
 		
 		lblDpartement = new JLabel("D\u00E9partement:");
-		lblDpartement.setBounds(50, 190, 91, 14);
+		lblDpartement.setBounds(51, 148, 91, 14);
 		contentPane.add(lblDpartement);
 		lblDpartement.setVisible(false);
 		
 		cbDepartement = new JComboBox();
-		cbDepartement.setBounds(190, 186, 184, 22);
+		cbDepartement.setBounds(190, 139, 184, 22);
 		contentPane.add(cbDepartement);
 		cbDepartement.setVisible(false);
 		lblDpartement.setVisible(false);
 		
 		cbRegion = new JComboBox(DaoRegion.getLesRegions());
 		cbRegion.addItemListener(this);
-		cbRegion.setBounds(190, 161, 184, 22);
+		cbRegion.setBounds(190, 110, 184, 22);
 		contentPane.add(cbRegion);
 		
 		txtVille = new JTextField();
-		txtVille.setBounds(190, 215, 184, 23);
+		txtVille.setBounds(190, 169, 184, 23);
 		contentPane.add(txtVille);
 		txtVille.setColumns(10);
 		
 		txtTitre = new JTextField();
 		txtTitre.setColumns(10);
-		txtTitre.setBounds(190, 249, 184, 23);
+		txtTitre.setBounds(190, 204, 184, 23);
 		contentPane.add(txtTitre);
 		
 		cbSousCateg = new JComboBox();
-		cbSousCateg.setBounds(190, 316, 184, 22);
+		cbSousCateg.setBounds(190, 266, 184, 22);
 		contentPane.add(cbSousCateg);
 		cbSousCateg.setVisible(false);
 		
 		lblSousCategorie = new JLabel("Sous cat\u00E9gorie :");
-		lblSousCategorie.setBounds(50, 320, 91, 14);
+		lblSousCategorie.setBounds(44, 266, 108, 14);
 		contentPane.add(lblSousCategorie);
+		
+		JButton btnValider = new JButton("Valider");
+		btnValider.setBounds(211, 388, 121, 37);
+		contentPane.add(btnValider);
+		
+		btnAnnuler = new JButton("Annuler");
+		btnAnnuler.setBounds(375, 388, 121, 37);
+		btnAnnuler.addActionListener(this);
+		contentPane.add(btnAnnuler);
 		lblSousCategorie.setVisible(false);
 	}
 	
@@ -221,6 +230,25 @@ public class PosterAnnonce extends JDialog implements MouseListener, ItemListene
 			
 		}
 	}
+	
+	public void actionPerformed(ActionEvent evt)
+	{
+		if (evt.getSource() == this.btnAnnuler )
+		{
+			this.dispose();
+			accueil fenAcc = new accueil();
+			fenAcc.setBounds(100, 100, 400, 280);
+			fenAcc.setLocation(100, 100);
+			fenAcc.setModal(true);
+			this.dispose();
+			fenAcc.setVisible(true);
+			fenAcc.setTitle("Accueil");
+			
+		}
+	   
+       
+	}
+	
 	public void mouseClicked(MouseEvent arg0) {
 	}
 	public void mouseEntered(MouseEvent arg0) {
@@ -245,7 +273,7 @@ public class PosterAnnonce extends JDialog implements MouseListener, ItemListene
 			fenInscription.setLocation(100, 100);
 			fenInscription.setModal(true);
 			fenInscription.setVisible(true);
-			fenInscription.setTitle("Connexion");
+			fenInscription.setTitle("Inscription");
 		}
 		
 		if ( evt.getSource() == this.mnAccueil)
@@ -256,7 +284,7 @@ public class PosterAnnonce extends JDialog implements MouseListener, ItemListene
 			fenAcc.setModal(true);
 			this.dispose();
 			fenAcc.setVisible(true);
-			fenAcc.setTitle("Connexion");
+			fenAcc.setTitle("Accueil");
 		} 
 		if ( evt.getSource() == this.mnRechercher)
 		{
