@@ -32,7 +32,7 @@ public class DaoCategorie
 		} catch (ClassNotFoundException e)
 		{
 			// TODO Bloc catch généré automatiquement
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		
 		connect = MySqlConnection.getConnection(url, user, mdp);
