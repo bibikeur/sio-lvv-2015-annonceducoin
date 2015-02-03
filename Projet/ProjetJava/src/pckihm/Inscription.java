@@ -66,7 +66,7 @@ public class Inscription extends JDialog implements ActionListener {
 	 */
 	public Inscription() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 537, 520);
+		setBounds(100, 100, 537, 495);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -74,15 +74,15 @@ public class Inscription extends JDialog implements ActionListener {
 		
 		lblInscription = new JLabel("Inscription");
 		lblInscription.setFont(new Font("Arial", Font.PLAIN, 23));
-		lblInscription.setBounds(192, 26, 123, 48);
+		lblInscription.setBounds(186, 11, 123, 48);
 		contentPane.add(lblInscription);
 		
 		lblNom = new JLabel("Nom:");
-		lblNom.setBounds(91, 168, 46, 14);
+		lblNom.setBounds(102, 97, 46, 14);
 		contentPane.add(lblNom);
 		
 		lblPrnom = new JLabel("Pr\u00E9nom:");
-		lblPrnom.setBounds(82, 196, 66, 14);
+		lblPrnom.setBounds(91, 122, 46, 14);
 		contentPane.add(lblPrnom);
 		
 		lblLogin = new JLabel("Login:");
@@ -94,7 +94,7 @@ public class Inscription extends JDialog implements ActionListener {
 		contentPane.add(lblMotDePasse);
 		
 		lblRue = new JLabel("Rue:");
-		lblRue.setBounds(97, 221, 36, 14);
+		lblRue.setBounds(102, 159, 36, 14);
 		contentPane.add(lblRue);
 		
 		lblVille = new JLabel("Ville:");
@@ -106,33 +106,33 @@ public class Inscription extends JDialog implements ActionListener {
 		contentPane.add(lblTel);
 		
 		txtNom = new JTextField();
-		txtNom.setBounds(155, 165, 143, 20);
+		txtNom.setBounds(155, 94, 143, 20);
 		contentPane.add(txtNom);
 		txtNom.setColumns(10);
 		
 		txtPrenom = new JTextField();
 		txtPrenom.setColumns(10);
-		txtPrenom.setBounds(155, 190, 143, 20);
+		txtPrenom.setBounds(147, 119, 143, 20);
 		contentPane.add(txtPrenom);
 		
 		txtRue = new JTextField();
 		txtRue.setColumns(10);
-		txtRue.setBounds(155, 218, 143, 20);
+		txtRue.setBounds(155, 156, 143, 20);
 		contentPane.add(txtRue);
 		
 		txtVille = new JTextField();
 		txtVille.setColumns(10);
-		txtVille.setBounds(155, 243, 143, 20);
+		txtVille.setBounds(155, 187, 143, 20);
 		contentPane.add(txtVille);
 		
 		txtTel = new JTextField();
 		txtTel.setColumns(10);
-		txtTel.setBounds(155, 293, 143, 20);
+		txtTel.setBounds(155, 243, 143, 20);
 		contentPane.add(txtTel);
 		
 		txtLogin = new JTextField();
 		txtLogin.setColumns(10);
-		txtLogin.setBounds(155, 318, 143, 20);
+		txtLogin.setBounds(155, 268, 143, 20);
 		contentPane.add(txtLogin);
 		
 		btnValider = new JButton("Valider");
@@ -150,7 +150,7 @@ public class Inscription extends JDialog implements ActionListener {
 		contentPane.add(lblCodePostal);
 		
 		txtCp = new JTextField();
-		txtCp.setBounds(155, 268, 143, 20);
+		txtCp.setBounds(155, 218, 143, 20);
 		contentPane.add(txtCp);
 		txtCp.setColumns(10);
 		
@@ -167,7 +167,7 @@ public class Inscription extends JDialog implements ActionListener {
 		this.groupeRadioBtn.add(this.rbtnProfessionnel);
 		
 		txtMdp = new JPasswordField();
-		txtMdp.setBounds(155, 343, 143, 20);
+		txtMdp.setBounds(155, 293, 143, 20);
 		contentPane.add(txtMdp);
 	}
 	
