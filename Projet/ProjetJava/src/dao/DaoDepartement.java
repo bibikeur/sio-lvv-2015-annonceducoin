@@ -20,7 +20,7 @@ public class DaoDepartement
 		Vector<Departement> lesDepartements;
 		String reqRegDep = "SELECT nomdepartement FROM DEPARTEMENT, REGION WHERE DEPARTEMENT.idregion = REGION.idregion AND nomregion = '";
 		String nomRegion = laRegion.getNomRegion();
-		reqRegDep = reqRegDep + nomRegion + "'";
+		reqRegDep = reqRegDep + nomRegion + "' ORDER BY NOMDEPARTEMENT";
 		lesDepartements = new Vector<Departement>();
 		Departement unDep;
 		

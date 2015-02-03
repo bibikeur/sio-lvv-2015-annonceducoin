@@ -21,7 +21,7 @@ public class DaoRegion
 		ResultSet res;
 		Vector<Region> lesRegions;
 		String listeRegion;
-		listeRegion = "SELECT NOMREGION FROM REGION";
+		listeRegion = "SELECT NOMREGION FROM REGION ORDER BY NOMREGION";
 		lesRegions = new Vector<Region>();
 	
 		
