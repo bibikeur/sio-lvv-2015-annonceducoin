@@ -13,7 +13,7 @@ public class MySqlConnection
 	{
 		String nomPilote;
 		nomPilote = "org.gjt.mm.mysql.Driver";
-		final String url ="jdbc:mysql://localhost/anonceducoin";
+		final String url ="jdbc:mysql://localhost/annonceducoin";
 		final String user = "root";
 		final String mdp = "";
 		Connection connect = null;
