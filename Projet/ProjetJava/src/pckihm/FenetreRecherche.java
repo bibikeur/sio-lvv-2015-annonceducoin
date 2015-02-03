@@ -22,7 +22,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import pckmetier.Categorie;
+import pckmetier.Departement;
 import pckmetier.Region;
+import pckmetier.SousCategorie;
 import dao.DaoCategorie;
 import dao.DaoDepartement;
 import dao.DaoRegion;
@@ -128,17 +130,21 @@ public class FenetreRecherche extends JDialog implements ActionListener, ItemLis
 		contentPane.add(lblDep);
 		this.lblDep.setVisible(false);
 		
-///		cbDepartement = new JComboBox();
-///		cbDepartement.setBounds(177, 121, 160, 22);
-///		contentPane.add(cbDepartement);
+
+		cbDepartement = new JComboBox();
+		cbDepartement.setBounds(177, 121, 160, 22);
+		contentPane.add(cbDepartement);
+		cbDepartement.setVisible(false);
 		
 		cbRegion = new JComboBox(DaoRegion.getLesRegions());
 		cbRegion.addItemListener(this);
-		cbRegion.addActionListener(this);
 		cbRegion.setBounds(177, 88, 160, 22);
 		contentPane.add(cbRegion);
 		
-		
+		cbSousCateg = new JComboBox();
+		cbSousCateg.setBounds(486, 121, 160, 22);
+		contentPane.add(cbSousCateg);
+		cbSousCateg.setVisible(false);
 		
 		lblCatgorie = new JLabel("Cat\u00E9gorie :");
 		lblCatgorie.setBounds(410, 92, 75, 14);
@@ -160,37 +166,43 @@ public class FenetreRecherche extends JDialog implements ActionListener, ItemLis
 
 	public void actionPerformed(ActionEvent evt) 
 	{
+		
 	}
 
-	public void itemStateChanged(ItemEvent evt) 
+	public void itemStateChanged(ItemEvent event) 
 	{
-		
-		if(evt.getSource() == this.cbRegion)
-		{
+		if (event.getSource() == this.cbRegion) 
+		{ 
+			
+			String regSelec = event.getItem().toString();
+			
 			Vector<Region> lesRegions;
 			lesRegions = DaoRegion.getLesRegions();
 			Region uneReg;
 			uneReg = new Region();
-			uneReg = DaoDepartement.rechercheRegion(lesRegions, this.cbRegion.getSelectedItem().toString());
-			
-			cbDepartement = new JComboBox(DaoDepartement.getLesDepartement(uneReg));
-			cbDepartement.setBounds(177, 121, 160, 22);
-			contentPane.add(cbDepartement);
+			uneReg = DaoDepartement.rechercheRegion(lesRegions, regSelec);
+			System.out.println(uneReg);
+			cbDepartement.removeAllItems();
+			for (Departement m : DaoDepartement.getLesDepartement(uneReg))
+				cbDepartement.addItem(m);
+			cbDepartement.setVisible(true);
 			this.lblDep.setVisible(true);
 		}
 		
-		if(evt.getSource() == this.cbCateg)
+		if (event.getSource() == this.cbCateg)
 		{
-		Vector<Categorie> lesCateg;
-		lesCateg = DaoCategorie.getLesCateg();
-		Categorie uneCateg;
-		uneCateg = new Categorie();
-		uneCateg = DaoSousCategorie.rechercheCateg(lesCateg, this.cbCateg.getSelectedItem().toString());
-		
-		cbSousCateg = new JComboBox(DaoSousCategorie.getLesSousCateg(uneCateg));
-		cbSousCateg.setBounds(486, 121, 160, 22);
-		contentPane.add(cbSousCateg);
-		this.lblSousCatgorie.setVisible(true);
+			String categSelec = event.getItem().toString();
+			Vector<Categorie> lesCateg;
+			lesCateg = DaoCategorie.getLesCateg();
+			Categorie uneCateg;
+			uneCateg = new Categorie();
+			uneCateg = DaoSousCategorie.rechercheCateg(lesCateg,categSelec);
+			cbSousCateg.removeAllItems();
+			for (SousCategorie m : DaoSousCategorie.getLesSousCateg(uneCateg))
+				cbSousCateg.addItem(m);
+			cbSousCateg.setVisible(true);
+			this.lblSousCatgorie.setVisible(true);
+			
 		}
 	}
 
