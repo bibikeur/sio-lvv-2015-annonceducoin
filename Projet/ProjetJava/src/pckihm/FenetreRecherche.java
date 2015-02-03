@@ -6,10 +6,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -17,8 +20,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.event.MenuEvent;
-import javax.swing.event.MenuListener;
 
 import pckmetier.Categorie;
 import pckmetier.Region;
@@ -27,7 +28,7 @@ import dao.DaoDepartement;
 import dao.DaoRegion;
 import dao.DaoSousCategorie;
 
-public class FenetreRecherche extends JFrame implements ActionListener, ItemListener, MenuListener
+public class FenetreRecherche extends JDialog implements ActionListener, ItemListener, MouseListener
 {
 
 	private JPanel contentPane;
@@ -75,13 +76,14 @@ public class FenetreRecherche extends JFrame implements ActionListener, ItemList
 	 */
 	public FenetreRecherche()
 	{
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 767, 422);
 		
 		menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
 		menuAccueil = new JMenu("Accueil");
+		menuAccueil.addMouseListener(this);
 		menuBar.add(menuAccueil);
 		
 		menuAnnonce = new JMenu("Annonce");
@@ -91,15 +93,16 @@ public class FenetreRecherche extends JFrame implements ActionListener, ItemList
 		menuAnnonce.add(mntmRechercherAnnonce);
 		
 		mntmDeposerAnnonce = new JMenuItem("D\u00E9poser une annonce");
+		mntmDeposerAnnonce.addMouseListener(this);
 		menuAnnonce.add(mntmDeposerAnnonce);
 		
 		menuConnexion = new JMenu("Connexion");
-		menuConnexion.addMenuListener(this);
+		menuConnexion.addMouseListener(this);
 		menuConnexion.addActionListener(this);
 		menuBar.add(menuConnexion);
 		
 		menuInscription = new JMenu("Inscription");
-		menuInscription.addMenuListener(this);
+		menuInscription.addMouseListener(this);
 		menuBar.add(menuInscription);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -157,11 +160,6 @@ public class FenetreRecherche extends JFrame implements ActionListener, ItemList
 
 	public void actionPerformed(ActionEvent evt) 
 	{
-		
-		
-		
-		
-		
 	}
 
 	public void itemStateChanged(ItemEvent evt) 
@@ -195,12 +193,16 @@ public class FenetreRecherche extends JFrame implements ActionListener, ItemList
 		this.lblSousCatgorie.setVisible(true);
 		}
 	}
-	public void menuCanceled(MenuEvent arg0) {
+
+	public void mouseClicked(MouseEvent evt) {
 	}
-	public void menuDeselected(MenuEvent arg0) {
+	public void mouseEntered(MouseEvent arg0) {
 	}
-	public void menuSelected(MenuEvent evt) 
+	public void mouseExited(MouseEvent arg0) {
+	}
+	public void mousePressed(MouseEvent evt) 
 	{
+		
 		if ( evt.getSource() == this.menuConnexion)
 		{
 			Connexion fenCo = new Connexion();
@@ -219,5 +221,30 @@ public class FenetreRecherche extends JFrame implements ActionListener, ItemList
 			fenInscription.setVisible(true);
 			fenInscription.setTitle("Connexion");
 		}
+		
+		if ( evt.getSource() == this.menuAccueil)
+		{
+			accueil fenAcc = new accueil();
+			fenAcc.setBounds(100, 100, 769, 520);
+			fenAcc.setLocation(100, 100);
+			fenAcc.setModal(true);
+			this.dispose();
+			fenAcc.setVisible(true);
+			fenAcc.setTitle("Connexion");
+		} 
+		if ( evt.getSource() == this.mntmDeposerAnnonce)
+		{
+			PosterAnnonce fenPoste = new PosterAnnonce();
+			fenPoste.setBounds(100, 100, 765, 529);
+			fenPoste.setLocation(100, 100);
+			fenPoste.setModal(true);
+			this.dispose();
+			fenPoste.setVisible(true);
+			fenPoste.setTitle("Déposer une annonce");
+		}
 	}
+	public void mouseReleased(MouseEvent arg0) {
+	}
+
+	
 }
