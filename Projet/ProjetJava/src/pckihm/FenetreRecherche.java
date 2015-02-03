@@ -215,7 +215,7 @@ public class FenetreRecherche extends JDialog implements ActionListener, ItemLis
 		if ( evt.getSource() == this.menuInscription)
 		{
 			Inscription fenInscription = new Inscription();
-			fenInscription.setBounds(100, 100, 769, 520);
+			fenInscription.setBounds(100, 100, 537, 495);;
 			fenInscription.setLocation(100, 100);
 			fenInscription.setModal(true);
 			fenInscription.setVisible(true);
@@ -225,7 +225,7 @@ public class FenetreRecherche extends JDialog implements ActionListener, ItemLis
 		if ( evt.getSource() == this.menuAccueil)
 		{
 			accueil fenAcc = new accueil();
-			fenAcc.setBounds(100, 100, 769, 520);
+			fenAcc.setBounds(100, 100, 400, 280);
 			fenAcc.setLocation(100, 100);
 			fenAcc.setModal(true);
 			this.dispose();

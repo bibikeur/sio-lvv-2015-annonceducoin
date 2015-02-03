@@ -229,7 +229,7 @@ public class PosterAnnonce extends JDialog implements ActionListener, MouseListe
 		if ( evt.getSource() == this.mnInscription)
 		{
 			Inscription fenInscription = new Inscription();
-			fenInscription.setBounds(100, 100, 769, 520);
+			fenInscription.setBounds(100, 100, 537, 495);;
 			fenInscription.setLocation(100, 100);
 			fenInscription.setModal(true);
 			fenInscription.setVisible(true);
@@ -239,7 +239,7 @@ public class PosterAnnonce extends JDialog implements ActionListener, MouseListe
 		if ( evt.getSource() == this.mnAccueil)
 		{
 			accueil fenAcc = new accueil();
-			fenAcc.setBounds(100, 100, 769, 520);
+			fenAcc.setBounds(100, 100, 400, 280);
 			fenAcc.setLocation(100, 100);
 			fenAcc.setModal(true);
 			this.dispose();

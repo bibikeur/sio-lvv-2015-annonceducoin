@@ -29,13 +29,6 @@ public class Connexion extends JDialog implements ActionListener
 	private JLabel lblIdentifiant;
 	private JLabel lblMotDePasse;
 	private JButton btnConnexion;
-	private JMenuBar menuBar;
-	private JMenu mnAccueil;
-	private JMenu mnAnnonce;
-	private JMenuItem menuRechercher;
-	private JMenuItem menuPoster;
-	private JMenu menuConnexion;
-	private JMenu menuInscription;
 	private JPasswordField txtMdp;
 	private JButton btnAnnuler;
 
@@ -66,28 +59,7 @@ public class Connexion extends JDialog implements ActionListener
 	public Connexion()
 	{
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		
-		menuBar = new JMenuBar();
-		setJMenuBar(menuBar);
-		
-		mnAccueil = new JMenu("Accueil");
-		menuBar.add(mnAccueil);
-		
-		mnAnnonce = new JMenu("Annonce ");
-		menuBar.add(mnAnnonce);
-		
-		menuRechercher = new JMenuItem("Rechercher ");
-		mnAnnonce.add(menuRechercher);
-		
-		menuPoster = new JMenuItem("D\u00E9poser une annonce");
-		mnAnnonce.add(menuPoster);
-		
-		menuConnexion = new JMenu("Connexion");
-		menuBar.add(menuConnexion);
-		
-		menuInscription = new JMenu("Inscription");
-		menuBar.add(menuInscription);
+		setBounds(100, 100, 416, 239);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
