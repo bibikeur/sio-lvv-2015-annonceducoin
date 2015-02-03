@@ -66,7 +66,7 @@ public class Inscription extends JDialog implements ActionListener {
 	 */
 	public Inscription() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 769, 520);
+		setBounds(100, 100, 537, 520);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -74,7 +74,7 @@ public class Inscription extends JDialog implements ActionListener {
 		
 		lblInscription = new JLabel("Inscription");
 		lblInscription.setFont(new Font("Arial", Font.PLAIN, 23));
-		lblInscription.setBounds(317, 26, 123, 48);
+		lblInscription.setBounds(192, 26, 123, 48);
 		contentPane.add(lblInscription);
 		
 		lblNom = new JLabel("Nom:");
@@ -137,12 +137,12 @@ public class Inscription extends JDialog implements ActionListener {
 		
 		btnValider = new JButton("Valider");
 		btnValider.addActionListener(this);
-		btnValider.setBounds(483, 403, 113, 37);
+		btnValider.setBounds(227, 403, 113, 37);
 		contentPane.add(btnValider);
 		
 		btnQuitter = new JButton("Quitter");
 		btnQuitter.addActionListener(this);
-		btnQuitter.setBounds(606, 403, 113, 37);
+		btnQuitter.setBounds(350, 403, 113, 37);
 		contentPane.add(btnQuitter);
 		
 		lblCodePostal = new JLabel("Code postal:");
@@ -155,11 +155,11 @@ public class Inscription extends JDialog implements ActionListener {
 		txtCp.setColumns(10);
 		
 		rbtnParticulier = new JRadioButton("Particulier");
-		rbtnParticulier.setBounds(437, 189, 109, 23);
+		rbtnParticulier.setBounds(350, 164, 109, 23);
 		contentPane.add(rbtnParticulier);
 		
 		rbtnProfessionnel = new JRadioButton("Professionnel");
-		rbtnProfessionnel.setBounds(437, 221, 109, 23);
+		rbtnProfessionnel.setBounds(350, 192, 109, 23);
 		contentPane.add(rbtnProfessionnel);
 		
 		this.groupeRadioBtn = new ButtonGroup();
