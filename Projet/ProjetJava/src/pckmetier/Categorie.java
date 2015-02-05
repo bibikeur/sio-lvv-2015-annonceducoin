@@ -35,6 +35,10 @@ public class Categorie
 		return  nomCateg;
 	}
 	
+	public void ajouterSousCateg(SousCategorie uneSousCateg)
+	{
+		this.lesSousCateg.add(uneSousCateg);
+	}
 	
 	
 }
