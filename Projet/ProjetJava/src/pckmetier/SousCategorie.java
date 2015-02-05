@@ -4,21 +4,21 @@ import java.util.ArrayList;
 
 public class SousCategorie
 {
-	private String nomCateg;
+	private String nomSousCateg;
 	private ArrayList<Annonce> lesAnnonces;
 	
 	
 
-	public SousCategorie(String nomCateg)
+	public SousCategorie(String nomSousCateg)
 	{
 		super();
-		this.nomCateg = nomCateg;
+		this.nomSousCateg = nomSousCateg;
 		this.lesAnnonces = new ArrayList<Annonce>();
 	}
 
 	public String getNomCateg()
 	{
-		return nomCateg;
+		return nomSousCateg;
 	}
 
 
@@ -37,7 +37,7 @@ public class SousCategorie
 	@Override
 	public String toString()
 	{
-		return  nomCateg;
+		return  nomSousCateg;
 	}
 	
 	
