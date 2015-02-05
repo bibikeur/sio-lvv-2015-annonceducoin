@@ -9,15 +9,13 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import pckmetier.Utilisateur;
 import dao.DaoUtilisateur;
 
 public class Connexion extends JDialog implements ActionListener
@@ -100,7 +98,7 @@ public class Connexion extends JDialog implements ActionListener
 	public void actionPerformed(ActionEvent evt)
 	{
 		if (evt.getSource() == btnConnexion )
-       	 {
+       	 {		
 			JOptionPane.showMessageDialog(this, "Utilisateur" + DaoUtilisateur.getConnexion(txtLogin.getText(), txtMdp.getText()));
        	 }
 		
