@@ -45,6 +45,8 @@ public class Inscription extends JDialog implements ActionListener {
 	private ButtonGroup groupeRadioBtn;
 	private String role;
 	private JPasswordField txtMdp;
+	private JTextField txtMail;
+	private JLabel lblMail;
 	/**
 	 * Launch the application.
 	 */
@@ -86,11 +88,11 @@ public class Inscription extends JDialog implements ActionListener {
 		contentPane.add(lblPrnom);
 		
 		lblLogin = new JLabel("Login:");
-		lblLogin.setBounds(91, 242, 86, 14);
+		lblLogin.setBounds(91, 267, 86, 14);
 		contentPane.add(lblLogin);
 		
 		lblMotDePasse = new JLabel("Mot de passe:");
-		lblMotDePasse.setBounds(52, 267, 96, 14);
+		lblMotDePasse.setBounds(52, 292, 96, 14);
 		contentPane.add(lblMotDePasse);
 		
 		lblRue = new JLabel("Rue:");
@@ -132,7 +134,7 @@ public class Inscription extends JDialog implements ActionListener {
 		
 		txtLogin = new JTextField();
 		txtLogin.setColumns(10);
-		txtLogin.setBounds(155, 239, 143, 20);
+		txtLogin.setBounds(155, 264, 143, 20);
 		contentPane.add(txtLogin);
 		
 		btnValider = new JButton("Valider");
@@ -167,8 +169,17 @@ public class Inscription extends JDialog implements ActionListener {
 		this.groupeRadioBtn.add(this.rbtnProfessionnel);
 		
 		txtMdp = new JPasswordField();
-		txtMdp.setBounds(155, 261, 143, 20);
+		txtMdp.setBounds(155, 289, 143, 20);
 		contentPane.add(txtMdp);
+		
+		txtMail = new JTextField();
+		txtMail.setBounds(155, 236, 143, 20);
+		contentPane.add(txtMail);
+		txtMail.setColumns(10);
+		
+		lblMail = new JLabel("Mail :");
+		lblMail.setBounds(91, 242, 46, 14);
+		contentPane.add(lblMail);
 	}
 	
 	public void actionPerformed(ActionEvent evt) 
@@ -188,7 +199,7 @@ public class Inscription extends JDialog implements ActionListener {
 				 this.role = "Professionnel";
 			 }
 			 if(DaoUtilisateur.getInscription(txtNom.getText(), txtPrenom.getText(), txtRue.getText(), txtVille.getText(),
-					 txtCp.getText(), txtTel.getText(), txtLogin.getText(), txtMdp.getText(), this.role ) == 1 )
+					 txtCp.getText(), txtTel.getText(), txtLogin.getText(), txtMdp.getText(), this.role, this.txtMail.getText() ) == 1 )
 			{
 				 JOptionPane.showMessageDialog(this, "Utilisateur ajouté"); 
 			}
