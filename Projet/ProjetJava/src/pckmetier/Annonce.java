@@ -19,7 +19,8 @@ public class Annonce
 	
 	
 	public Annonce(String infoAnnonce, String mail, String tel,
-			String titreAnnonce, int prixAnnonce, String dateAnnonce, SousCategorie laSousCateg, Departement leDepartement)
+			String titreAnnonce, int prixAnnonce, String dateAnnonce, 
+			SousCategorie laSousCateg, Departement leDepartement)
 	{
 		super();
 		this.infoAnnonce = infoAnnonce;
@@ -33,6 +34,19 @@ public class Annonce
 		this.lesPhotos = new ArrayList<Photo>();
 		this.leDepartement.ajouterAnnonce(this);
 		
+	}
+	
+	public Annonce(String infoAnnonce, String mail, String tel,
+			String titreAnnonce, int prixAnnonce, String dateAnnonce)
+	{
+		super();
+		this.infoAnnonce = infoAnnonce;
+		this.mail = mail;
+		this.Tel = tel;
+		this.titreAnnonce = titreAnnonce;
+		this.prixAnnonce = prixAnnonce;
+		this.dateAnnonce = dateAnnonce;
+		this.lesPhotos = new ArrayList<Photo>();
 	}
 
 	public String getInfoAnnonce()
