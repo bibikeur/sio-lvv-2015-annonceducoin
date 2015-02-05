@@ -7,7 +7,8 @@ public class Annonce
 	
 
 	private String infoAnnonce;
-	private String contactAnnonce;
+	private String mail;
+	private String Tel;
 	private String titreAnnonce;
 	private int prixAnnonce;
 	private String dateAnnonce;
@@ -17,12 +18,13 @@ public class Annonce
 	
 	
 	
-	public Annonce(String infoAnnonce, String contactAnnonce,
+	public Annonce(String infoAnnonce, String mail, String tel,
 			String titreAnnonce, int prixAnnonce, String dateAnnonce, SousCategorie laSousCateg, Departement leDepartement)
 	{
 		super();
 		this.infoAnnonce = infoAnnonce;
-		this.contactAnnonce = contactAnnonce;
+		this.mail = mail;
+		this.Tel = tel;
 		this.titreAnnonce = titreAnnonce;
 		this.prixAnnonce = prixAnnonce;
 		this.dateAnnonce = dateAnnonce;
@@ -38,14 +40,6 @@ public class Annonce
 		return infoAnnonce;
 	}
 	
-	
-	
-	public String getContactAnnonce()
-	{
-		return contactAnnonce;
-	}
-	
-
 	public String getTitreAnnonce()
 	{
 		return titreAnnonce;
