@@ -14,11 +14,12 @@ public class Utilisateur
 	private String tel;
 	private String mail;
 	private String role;
+	//private int log;
 	private ArrayList<Annonce>lesAnnonces;
 	
 	public Utilisateur(String nom, String prenom, String login, String mdp,
 			String rue, String cp, String ville, String tel, String mail,
-			String role, ArrayList<Annonce> lesAnnonces)
+			String role)
 	{
 		super();
 		this.nom = nom;
@@ -31,8 +32,28 @@ public class Utilisateur
 		this.tel = tel;
 		this.mail = mail;
 		this.role = role;
+		//this.log = log;
 		this.lesAnnonces = new ArrayList<Annonce>();
 	}
+
+
+
+	public Utilisateur()
+	{
+	}
+
+
+
+	@Override
+	public String toString()
+	{
+		return "Utilisateur [nom=" + nom + ", prenom=" + prenom + ", login="
+				+ login + ", mdp=" + mdp + ", rue=" + rue + ", cp=" + cp
+				+ ", ville=" + ville + ", tel=" + tel + ", mail=" + mail
+				+ ", role=" + role + ", lesAnnonces=" + lesAnnonces + "]";
+	}
+
+
 
 	public String getNom()
 	{
@@ -93,6 +114,9 @@ public class Utilisateur
 		return lesAnnonces;
 	}
 	
-	
+	public void jouterAnnonce(Annonce uneAnnonce)
+	{
+	this.lesAnnonces.add(uneAnnonce);
+	}
 	
 }
