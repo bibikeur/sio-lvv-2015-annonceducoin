@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import pckmetier.Utilisateur;
+
 public class DaoUtilisateur 
 {
 	
@@ -15,10 +17,12 @@ public class DaoUtilisateur
 		Connection connexion = null;
 		Statement stLienBd;
 		ResultSet resultat;
+		Utilisateur util;
 		int res;
 		res = 0;
 		
-		reqUtil = "SELECT loginutilisateur, mdputilisateur, roleutilisateur FROM UTILISATEUR";
+		reqUtil = "SELECT * FROM UTILISATEUR";
+		
 	
 		
 		try 
@@ -27,19 +31,22 @@ public class DaoUtilisateur
 			stLienBd = connexion.createStatement();
 			resultat = stLienBd.executeQuery(reqUtil);
 			
-			while(resultat.next() && res == 0)
+			do 
 			{
 				if(resultat.getString("loginutilisateur").equals(login) && resultat.getString("mdputilisateur").equals(mdp))
 				{
-					res = 1;
-					
-					if(resultat.getString("roleutilisateur").equals("Professionnel"))
-					{
-						res= 2;
-					}
+					res = resultat.getInt("idutilisateur");
 				}
-				
+			}while(resultat.next() & res != 0);
+			
+			if (res == 1 || res == 2)
+			{
+				util = new Utilisateur(resultat.getString("nomutilisateur"), resultat.getString("prenomutilisateur"), resultat.getString("loginutilisateur"), resultat.getString("mdputilisateur"),
+						resultat.getString("rueutilisateur"), resultat.getString("cputilisateur"), resultat.getString("villeutilisateur"), resultat.getString("telutilisateur"), resultat.getString("mailutilisateur"),
+						resultat.getString("roleutilisateur"));
+				System.out.println(util);
 			}
+			
 		} 
 		catch (SQLException e) 
 		{
@@ -49,7 +56,7 @@ public class DaoUtilisateur
 		return res;	
 	}
 	
-	public static int  getInscription(String nom, String prenom, String rue, String ville, String cp, String tel, String login, String mdp, String role)
+	public static int  getInscription(String nom, String prenom, String rue, String ville, String cp, String tel, String login, String mdp, String role, String mail)
 	{
 		
 		String reqInscription;
@@ -61,7 +68,7 @@ public class DaoUtilisateur
 		int test = 0;
 		reqInscription = "INSERT INTO UTILISATEUR VALUES ('" + test + "','" + nom + "','"
 					+ prenom + "','" + login + "','" + mdp + "','" + rue + "','" + cp + "','" + ville + "','" + tel 
-					+ "','" + role + "')";
+					+ "','" + role + "','" + mail +"')";
 				
 					
 					
